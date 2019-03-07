@@ -1,0 +1,46 @@
+.container {
+  display: grid;
+  min-width: 100px;
+  max-width: 600px;
+  width: 80%;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: 50px;
+  grid-column-gap: 10px;
+}
+
+.item {
+  /* background-color: pink; */
+  /* border: 1px solid red; */
+}
+
+.records-container {
+	display: grid;
+	width: 60%;
+	grid-template-columns: 1fr 1fr 100px 100px;
+}
+
+.records-container div {
+	background-color: pink;
+	padding: 0.5em 1em;
+}
+
+button {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #008F95;
+  color: #FFFFFF;
+  font-size: 1em;
+}
+
+button:hover,
+button:focus {
+  background-color: #E9B000;
+}
+
+button:disabled {
+  background-color: #DEDEDE;
+}

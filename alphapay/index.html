@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AlphaPay Demo Checkout Page</title>
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body>
+    <h1>AlphaPay Demo</h1>
+    <div id="install-status"></div>
+    <pre id="error"></pre>
+    <p>
+      <button id="install" onclick="installHandler();">Install</button>
+      <button id="uninstall" onclick="uninstallHandler();">Uninstall</button>
+    </p>
+    <p>
+      <button id="buy" onclick="buy();">Buy</button>
+    </p>
+    <pre id="details"></pre>
+    <script>checkInstallStatus()</script>
+  </body>
+</html>

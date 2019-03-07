@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AlphaPay - Minimalistic Payment Handler</title>
+<style>
+#details {
+  border: 1px solid #898989;
+}
+
+.error {
+    color: red;
+}
+
+.status {
+    color: green;
+}
+</style>
+    <script type="text/javascript" src="ui.js"></script>
+  </head>
+  <body>
+    <h1>Choose how to pay with AlphaPay</h1>
+    <button id="pay" onclick="pay()">Pay</button>
+    <pre id="details"></pre>
+    <div id="status"></div>
+    <script>onPageReady();</script>
+  </body>
+</html>

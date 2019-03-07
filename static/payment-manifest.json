@@ -1,0 +1,6 @@
+{
+  "default-applications": ["https://pay.stillmuchtoponder.com/manifest.json"],
+  "supported_origins": [
+    "*"
+  ]
+}

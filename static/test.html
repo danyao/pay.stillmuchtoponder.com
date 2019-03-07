@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<title>Test install.js</title>
+<script type="text/javascript" src="install.js"></script>
+<script type="text/javascript">
+  var testData = [
+    {
+    	articleId: "https://foo.com",
+    	paid: 5,
+    	currency: "USD"
+    },
+    {
+    	articleId: "https://bar.com",
+    	paid: 10,
+    	currency: "USD"
+    }
+  ];
+</script>
+<style>
+  .container {
+  	display: grid;
+  	width: 100%;
+  	grid-template-columns: 20% 80%;
+  }
+  
+  .container div {
+  	border: 1px solid blue;
+  }
+</style>
+</head>
+<body>
+<div id="records" class="container"></div>
+</body>
+</html>

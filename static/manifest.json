@@ -1,0 +1,21 @@
+{
+  "name": "Pay with Lilac Pay",
+  "short_name": "Lilac Pay",
+  "description": "This is an example of the Payment Handler API.",
+  "icons": [
+    {
+      "src": "images/manifest/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "serviceworker": {
+    "src": "service-worker.js",
+    "scope": "/",
+    "use_cache": false
+  },
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#3f51b5",
+  "background_color": "#3f51bf"
+}

@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Checkout Demo</title>
+    <script type="text/javascript">
+      let client;
+      navigator.serviceWorker.addEventListener("message", e => {
+        console.log("Received message from client ", e.source);
+        client = e.source;
+      });
+      navigator.serviceWorker.controller.postMessage("payment_app_window_ready");
+
+      function onPay() {
+        if (!client) return;
+        const response = {
+          methodName: "https://pay.stillmuchtoponder.com/pay",
+          details: { id: "123456" }
+        };
+        client.postMessage(response);
+      }
+
+      function onCancel() {
+        if (!client) return;
+        client.postMessage("The payment request is cancelled by the user.");
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="onPay()">Pay</button>
+    <button onclick="onCancel()">Cancel</button>
+  </body>
+</html>

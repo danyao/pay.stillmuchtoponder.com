@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>Lilac Pay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <script type="text/javascript" src="install.js"></script>
+</head>
+
+<body onload="onLoad()">
+  <h1>Hi! Welcome to the WebPass demo.</h1>
+  <p id="install_status"></p>
+  <div class="container">
+    <div class="item">
+      <button id="install" onclick="install()">Install Payment Handler</button>
+    </div>
+    <div class="item">
+      <!--<button id="uninstall" onclick="uninstall()" disabled>Uninstall Payment Handler</button>-->
+    </div>
+  </div>
+  <h1>Your History</h1>
+  <div id="records" class="records-container"></div>
+</body>
+</html>

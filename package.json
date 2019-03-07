@@ -1,0 +1,43 @@
+{
+  "name": "lilacpay",
+  "version": "1.0.0",
+  "description": "A toy Payment Handler implementation",
+  "repository": "N/A",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "e2e": "repo-tools test deploy",
+    "test": "repo-tools test app",
+    "cover": "nyc --cache npm test; nyc report --reporter=html"
+  },
+  "author": "Danyao Wang",
+  "contributors": [
+    {
+      "name": "Danyao Wang",
+      "email": "danyao.wang@gmail.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "semistandard": {
+    "globals": [
+      "after",
+      "afterEach",
+      "before",
+      "beforeEach",
+      "describe",
+      "it"
+    ]
+  },
+  "dependencies": {
+    "express": "4.16.2",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "2.2.1",
+    "ava": "0.25.0",
+    "supertest": "3.0.0"
+  },
+  "engines": {
+    "node": "8.x.x"
+  }
+}

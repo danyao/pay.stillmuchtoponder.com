@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WebAuthn in Payment Handler test</title>
+  </head>
+  <body>
+    <p>
+      This is a reproduction test case for <a href="https://crbug.com/938491">crbug.com/938491</a>.
+      Please click on the button below to trigger the test. When the payment handler UI appears,
+      follow the instructions to register a public key credential. If the bug is fixed, you should
+      be prompted to tap your security key and generate a new credential.
+    </p>
+    <script>
+      function log(message) {
+        document.querySelector('#output').innerText = message;
+      }
+
+      function buy() {
+        const methodData = Object.freeze({
+          supportedMethods: 'https://pay.stillmuchtoponder.com/alphapay',
+          data: {
+            ui: 'crbug938491',
+          },
+        });
+        const details = Object.freeze({
+          total: {
+            label: 'Total',
+            amount: {
+              currency: 'USD',
+              value: '1.00',
+            },
+          },
+        });
+
+        if (!window.PaymentRequest) {
+          log('PaymentRequest is not supported.');
+        }
+        let request = new PaymentRequest([methodData], details);
+        request.show().then(response => {
+          log(JSON.stringify(response, undefined, 2));
+        }).catch(e => {
+          log(e.message);
+        })
+      }
+    </script>
+
+    <button onclick="buy()">Start Test</button>
+    <pre id="output"></pre>
+  </body>
+</html>

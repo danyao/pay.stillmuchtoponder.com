@@ -1,0 +1,15 @@
+{
+  "name": "AlphaPay - Minimalistic Payment Handler",
+  "short_name": "Pay with AlphaPay",
+  "icons": [
+    {
+      "src": "images/alpha_32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
+  "serviceworker": {
+    "src": "alphapay.js",
+    "use_cache": false
+  }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AlphaPay - Minimalistic Payment Handler</title>
+<style>
+#details {
+  border: 1px solid #898989;
+}
+
+.error {
+    color: red;
+}
+
+.status {
+    color: green;
+}
+</style>
+    <script type="text/javascript" src="alphapay-ui.js"></script>
+    <script type="text/javascript" src="webauthn.js"></script>
+  </head>
+  <body>
+    <h1>Choose how to pay with AlphaPay</h1>
+    <button id="pay" onclick="pay()">Pay</button>
+    <pre id="details"></pre>
+    <div id="status"></div>
+    <script>onPageReady();</script>
+
+    <!-- WebAuthn Demo -->
+    <p>
+      <button id="registerCred" onclick="registerCredential()">
+        Register WebAuthn Credential
+      </button>
+    </p>
+    <p>
+      <label>Credential ID:
+        <input id="webauthn-cred" type="text"></input>
+      </label>
+    </p>
+    <p>
+      <button id="authenticate" onclick="authenticate()">
+        Authenticate using ID
+      </button>
+    </p>
+    <div id="webauthn-auth-status"></div>
+  </body>
+</html>
