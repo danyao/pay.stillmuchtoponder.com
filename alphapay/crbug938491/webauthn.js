@@ -67,6 +67,7 @@ function registerCredential() {
 
   navigator.credentials.create({ publicKey }).then(credential => {
     console.log(credential);
+    log(INFO, `Created credential with ID ${credential.id}`);
   }).catch(error => {
     log(ERROR, `Failed to create credential: ${error}`);
   });
