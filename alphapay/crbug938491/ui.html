@@ -4,9 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="webauthn.js"></script>
     <title>Payment Handler + WebAuthn test</title>
+    <style>
+      .info {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <h1>Payment Handler that uses WebAuthn</h1>
-    <button id="register" onclick="registerCredential()">Click to register this device</button>
+    <button id="register" onclick="registerCredential();">Click to register this device</button>
   </body>
 </html>
