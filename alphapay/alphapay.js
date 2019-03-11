@@ -81,6 +81,10 @@ self.addEventListener("paymentrequest", e => {
       break;
     case 'oauth':
       uiURL = `${origin}/alphapay/oauth/ui.html`;
+      break;
+    case 'webauthn':
+      uiURL = `${origin}/alphapay/webauthn/ui.html`;
+      break;
     default:
       break;
   }

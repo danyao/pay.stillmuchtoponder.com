@@ -6,14 +6,15 @@
 const ERROR='error';
 const INFO='status';
 
-// Simulated server-side data.
-let _server = {};
-
 /**
  * Helper function to append a log message to screen.
  */
 function log(type, message) {
-  let output = document.querySelector('#webauthn-auth-status');
+  let output = document.querySelector('#log');
+  if (!output) {
+    document.body.insertAdjacentHTML('beforeend', '<div id="log"></div>');
+    output = document.querySelector('#log');
+  }
   output.insertAdjacentHTML('beforeend', `<pre class="${type}">${message}</pre>`);
 }
 
@@ -33,8 +34,7 @@ function registerCredential() {
   }
 
   let challenge = randomChallenge(32);
-  _server.challenge = challenge.join();
-  log(INFO, `Client challenge: ${_server.challenge}`);
+  log(INFO, `Client challenge: ${challenge.join()}`);
 
   let publicKey = {
     challenge,
@@ -58,7 +58,9 @@ function registerCredential() {
     },
 
     timeout: 60000,
-    attestation: 'direct'
+
+    // Avoid user consent window by not requesting an attestation statement form the security key.
+    attestation: 'none',
   };
 
   navigator.credentials.create({ publicKey }).then(credential => {

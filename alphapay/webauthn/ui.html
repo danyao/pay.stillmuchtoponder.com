@@ -19,18 +19,13 @@
     <script type="text/javascript" src="webauthn.js"></script>
   </head>
   <body>
-    <h1>Choose how to pay with AlphaPay</h1>
-    <button id="pay" onclick="pay()">Pay</button>
-    <pre id="details"></pre>
-    <div id="status"></div>
-    <script>onPageReady();</script>
-
-    <!-- WebAuthn Demo -->
+    <h1>Payment Handler that uses WebAuthn</h1>
     <p>
       <button id="registerCred" onclick="registerCredential()">
         Register WebAuthn Credential
       </button>
     </p>
+    <hr/>
     <p>
       <label>Credential ID:
         <input id="webauthn-cred" type="text"></input>
@@ -41,6 +36,5 @@
         Authenticate using ID
       </button>
     </p>
-    <div id="webauthn-auth-status"></div>
   </body>
 </html>
