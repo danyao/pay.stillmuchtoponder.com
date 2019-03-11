@@ -115,14 +115,15 @@ function addInstruments(registration) {
 /**
  * Initiate buy flow.
  */
-function buy() {
+function buy(additionalMethodData={}) {
   if (!window.PaymentRequest) {
     showError('PaymentRequest is not supported.');
     return;
   }
 
   let methodData = [{
-    supportedMethods: 'https://pay.stillmuchtoponder.com/alphapay'
+    supportedMethods: 'https://pay.stillmuchtoponder.com/alphapay',
+    data: additionalMethodData,
   }];
   let details = {
     total: {
@@ -139,4 +140,15 @@ function buy() {
       showDetails(response);
     });
   });
+}
+
+/**
+ * Initiate buy flow with additional parameters for OAuth.
+ */
+function oAuthTest() {
+  buy({ui: 'oauth'});
+}
+
+function webAuthnTest() {
+  buy({ui: 'webauthn'});
 }

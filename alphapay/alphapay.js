@@ -74,10 +74,17 @@ self.addEventListener("paymentrequest", e => {
   let uiURL = `${origin}/alphapay/default/ui.html`;
   
   // Reproduction example for crbug.com/938491
-  if (additionalPaymentMethodData.ui == 'crbug938491') {
-    console.log(`Using UI variation: ${additionalPaymentMethodData.ui}`);
-    uiURL = `${origin}/alphapay/crbug938491/ui.html`;
+  console.log(`Using UI variation: ${additionalPaymentMethodData.ui}`);
+  switch (additionalPaymentMethodData.ui) {
+    case 'crbug938491':
+      uiURL = `${origin}/alphapay/crbug938491/ui.html`;
+      break;
+    case 'oauth':
+      uiURL = `${origin}/alphapay/oauth/ui.html`;
+    default:
+      break;
   }
+      
   e.openWindow(uiURL)
       .then(windowClient => {
         if (!windowClient) {
