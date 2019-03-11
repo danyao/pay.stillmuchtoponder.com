@@ -139,6 +139,8 @@ function buy(additionalMethodData={}) {
     response.complete('success').then(() => {
       showDetails(response);
     });
+  }).catch(error => {
+    showError(error.message);
   });
 }
 
