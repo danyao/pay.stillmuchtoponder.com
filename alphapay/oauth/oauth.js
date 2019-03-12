@@ -26,16 +26,13 @@ function getNonce() {
   return btoa(buffer);
 }
 
-let _googleSigninURL = undefined;
-
 /**
- * Construct a redirect URL to signin with Google and saves it in _googleSigninURL.
+ * Redirect URL to signin with Google OAuth.
  */
-function buildGoogleSigninURL() {
+function oAuthWithGoogle() {
   // Normally this nonce should be generated on the server side for this session
   // and used to validate the returned access token.
-  let nonce = getNonce();
-  log(INFO, `Using nonce ${nonce}.`);
+  nonce = getNonce();
 
   let googleAuthEndpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
   // Credential API client ID configured on Google Cloud Platform Dashboard.
@@ -45,22 +42,14 @@ function buildGoogleSigninURL() {
   let url = [
     `${googleAuthEndpoint}?client_id=${clientID}`,
     `redirect_uri=${encodeURI(redirectURL)}`,
-    `scope=openid`,
+    `scope=${encodeURI('email profile openid')}`,
     `response_type=id_token`,
     `response_mode=query`,
     `nonce=${nonce}`
   ].join('&');
   log(INFO, `Built request: ${url}`);
 
-  _googleSigninURL = url;
-}
-
-/**
- * Redirect to signin with Google
- */
-function googleSignIn() {
-  console.assert(_googleSigninURL.length, 'Must call buildGoogleSigninURL() first.');
-  window.location = _googleSigninURL;
+  window.location = url;
 }
 
 /**
@@ -69,7 +58,31 @@ function googleSignIn() {
 function processGoogleResponse(params) {
   let idToken = params.get('id_token');
   log(INFO, `Received JWT: ${idToken}`);
-  document.querySelector('#google-signin').setAttribute('disabled', 'disabled');
+
+  const userData = parseJWT(idToken);
+  if (userData) {
+    log(INFO, `JWT Payload:
+    ${JSON.stringify(userData, undefined, 2)}`);
+    document.querySelector('#google-signin').setAttribute('disabled', 'disabled');
+  }
+}
+
+/**
+ * Attempts to parse a JSON Web Token. Return null if parsing fails.
+ */
+function parseJWT(token) {
+  let parts = token.split('.');
+  if (parts.length != 3) {
+    log(ERROR, 'Token is not a JWT.');
+    return null;
+  }
+
+  const [header, payload, signature] = parts;
+  try {
+    return JSON.parse(atob(payload));
+  } catch (e) {
+    log(ERROR, `Failed to parse JWT payload: ${e.message}`);
+  }
 }
 
 /**
@@ -86,8 +99,7 @@ function init() {
     }
   }
   
-  buildGoogleSigninURL();
   let googleSigninButton = document.querySelector('#google-signin');
   googleSigninButton.removeAttribute('disabled');
-  googleSigninButton.addEventListener('click', () => { googleSignIn(); });
+  googleSigninButton.addEventListener('click', () => { oAuthWithGoogle(); });
 }

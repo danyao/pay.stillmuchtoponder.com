@@ -11,11 +11,18 @@
       .error {
         color: red;
       }
+      #logs {
+        width: 100%;
+        border: 1px solid #ABABAB;
+        padding: 10px;
+      }
     </style>
   </head>
   <body>
     <h1>Payment Handler that uses OAuth with OpenIDConnect</h1>
-    <button id="google-signin">Sign in with Google</button>
+    <p><button id="google-signin">Sign in using Google</button></p>
+    <p><button id="facebook-signin" disabled>Sign in using Facebook</button></p>
+
 
     <script>init();</script>
   </body>
