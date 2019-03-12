@@ -154,3 +154,7 @@ function oAuthTest() {
 function webAuthnTest() {
   buy({ui: 'webauthn'});
 }
+
+function googleSigninTest() {
+  buy({ui: 'gsignin'});
+}
