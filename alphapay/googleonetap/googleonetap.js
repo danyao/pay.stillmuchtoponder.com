@@ -3,19 +3,15 @@
  * Adapted from https://developers.google.com/identity/one-tap/web/overview
  */
 
+// OAuth client ID
+const clientId = '743479791773-n9cjoou983g4l4hf3061b6eidj3r1161.apps.googleusercontent.com';
+
 /**
  * Main entry point
  */
 function init() {
   window.onGoogleYoloLoad = (googleyolo) => {
     tryAutoSignin(googleyolo);
-    
-    // Attach event handlers
-    document.querySelector('#button-signout').addEventListener('click', event => {
-      googleyolo.disableAutoSignIn().then(() => {
-        console.log('Auto signin disabled.');
-      });
-    }, false);
   };
 }
 
@@ -31,19 +27,14 @@ function tryAutoSignin(googleyolo) {
     supportedIdTokenProviders: [
       {
         uri: 'https://accounts.google.com',
-        clientId: '743479791773-n9cjoou983g4l4hf3061b6eidj3r1161.apps.googleusercontent.com',
+        clientId: `${clientId}`
       },
     ],
   });
 
   return retrievePromise.then(credential => {
-    if (credential.password) {
-      console.log(credential);
-    } else {
-      // A Google Account ID Token is retrieved.
-      console.log('Got ID token: ', credential);
-    }
+    log(INFO, `Retrieved credential: ${JSON.stringify(credential, undefined, 2)}`);
   }).catch(error => {
-    console.log('Error: ', error);
-  });
+    log(ERROR, `Failed to retrieve credential: ${error.message}`);
+  })
 }
