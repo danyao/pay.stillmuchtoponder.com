@@ -158,3 +158,7 @@ function webAuthnTest() {
 function googleSigninTest() {
   buy({ui: 'gsignin'});
 }
+
+function googleOneTapTest() {
+  buy({ui: 'googleonetap'});
+}
