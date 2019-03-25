@@ -1,0 +1,11 @@
+.info {
+  color: green;
+}
+.error {
+  color: red;
+}
+#logs {
+  width: 100%;
+  border: 1px solid #ABABAB;
+  padding: 10px;
+}
