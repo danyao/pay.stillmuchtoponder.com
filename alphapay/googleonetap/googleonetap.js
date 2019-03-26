@@ -19,7 +19,7 @@ function init() {
  * Try to auto signin a user. Returns a Promise that resolves if auto-signin is successful.
  */
 function tryAutoSignin(googleyolo) {
-  const retrievePromise = googleyolo.retrieve({
+  const retrievePromise = googleyolo.hint({
     supportedAuthMethods: [
       'https://accounts.google.com',
       'googleyolo://id-and-password',
