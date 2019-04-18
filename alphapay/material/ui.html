@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Material Design Demo App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-blue.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="material.js"></script>
+    <style>
+      .mdl-cell {
+        border: 0px solid #EFEFEF;
+      }
+      .demo-header {
+        padding-left: 0px;
+      }
+      .demo-title {
+        margin: auto;
+      }
+      .demo-content {
+        margin: auto;
+        text-align: center;
+      }
+      .mdl-radio {
+        margin: 10px;
+      }
+      #view-selection {
+        text-align: center;
+      }
+      #view-thank-you {
+        text-align: center;
+      }
+      .view {
+        display: none;
+      }
+      </style>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="demo-header mdl-layout__header-row">
+          <span class="demo-title mdl-layout-title">Demo App</span>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div id="view-selection" class="view">
+          <div>
+            <div>
+              <h4>Support Once Upon A Time</h4>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
+                <span class="mdl-radio__label">First</span>
+              </label>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
+                <span class="mdl-radio__label">Second</span>
+              </label>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3">
+                <span class="mdl-radio__label">Third</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <button id="btn-back" class="mdl-button mdl-js-button mdl-button--accent">
+              Back
+            </button>
+            <button id="btn-signin" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+              Pay
+            </button>
+          </div>
+        </div>
+        <!-- end of view-selection -->
+        <!-- begin view-thank-you -->
+        <div id="view-thank-you" class="view">
+          <div>
+            <div>
+              <h4>Thank you <span id='given-name'></span>!</h4>
+              <button id="btn-done" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- end view-thank-you -->
+      </main>
+    </div>
+  </body>
+  <script>startApp();</script>
+</html>

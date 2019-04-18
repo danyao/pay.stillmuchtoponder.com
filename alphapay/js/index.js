@@ -1,6 +1,10 @@
 // URL of the payment handler service worker.
 const kServiceWorkerURL = 'alphapay.js';
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.controller.postMessage('version');
+}
+
 /**
  * Checks if AlphaPay payment handler is installed.
  */

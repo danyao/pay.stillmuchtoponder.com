@@ -54,9 +54,8 @@ function registerCredential() {
     ],
 
     authenticatorSelection: {
-      // Don't specify any authenticatorAttachment modes so all are
-      // supported, either an authenticator or platform built-in.
-      //authenticatorAttachment: 'cross-platform',
+      // Use built-in authenticator.
+      authenticatorAttachment: 'platform',
     },
 
     timeout: 60000,

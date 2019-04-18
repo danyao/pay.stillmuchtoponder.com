@@ -4,6 +4,8 @@
  * This is a minimalistic reference implementation of a Payment Handler.
  */
 
+const version = '1.6';
+
 /**
  * Helper class that encapsulates a new promise and its resolve and reject
  * handlers.
@@ -17,8 +19,6 @@ class PromiseResolver {
   }
 }
 
-console.log("AlphaPay payment handler demo. This is the Service Worker.");
-
 // This must be in the "supported_origins" list in payment-manifest.json.
 const origin = "https://pay.stillmuchtoponder.com";
 
@@ -30,10 +30,20 @@ const methodName = `${origin}/alphapay`;
 let paymentRequestEvent = undefined;
 let paymentRequestResolver = undefined;
 
+function logSignature(caller) {
+  console.log(`${caller}: AlphaPay SW v${version}.`);
+}
+
+// Log service worker life cycle events.
+self.addEventListener("activate", e => {
+  logSignature('activate');
+});
+
 // Register a listener to handle "paymentrequest" event. This event is triggered
 // when user selects AlphaPay in the browser payment sheet to handler the active
 // Payment Request. This is the main entry point for the payment handler.
 self.addEventListener("paymentrequest", e => {
+  logSignature('paymentrequest');
   paymentRequestEvent = e;
   console.log("Received PaymentRequest: ", paymentRequestEvent);
 
@@ -91,6 +101,9 @@ self.addEventListener("paymentrequest", e => {
     case 'googleonetap':
       uiURL = `${origin}/alphapay/googleonetap/ui.html`;
       break;
+    case 'material':
+      uiURL = `${origin}/alphapay/material/ui.html`;
+      break;
     default:
       break;
   }
@@ -110,6 +123,11 @@ self.addEventListener("paymentrequest", e => {
  * Handles incoming communication from payment app UI.
  */
 self.addEventListener('message', e => {
+  logSignature('message');
+  if (e.data === 'version') {
+    return;
+  }
+
   // ui.html sends this message when it finishes loading.
   if (e.data == 'payment_app_window_ready') {
     sendPaymentRequest();

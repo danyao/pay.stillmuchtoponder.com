@@ -67,6 +67,9 @@ app.use('/alphapay', (req, res, next) => {
 });
 app.use('/alphapay', express.static('alphapay'));
 
+// Merchant demo
+app.use('/merchant', express.static('merchant'));
+
 // Main method
 if (module === require.main) {
   const server = app.listen(process.env.PORT || 8080, () => {
