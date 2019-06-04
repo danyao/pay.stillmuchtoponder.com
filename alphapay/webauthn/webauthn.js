@@ -54,8 +54,7 @@ function registerCredential() {
     ],
 
     authenticatorSelection: {
-      // Use built-in authenticator.
-      authenticatorAttachment: 'platform',
+      authenticatorAttachment: 'platform',  // Default
     },
 
     timeout: 60000,
@@ -63,6 +62,14 @@ function registerCredential() {
     // Avoid user consent window by not requesting an attestation statement form the security key.
     attestation: 'none',
   };
+
+  // Get authenticatorAttachment from URL param.
+  let params = new URLSearchParams(window.location.search);
+  //let authenticatorAttachment = 'platform'; // Default to built-in
+  if (params.get('attach') == 'cross-platform') { // Allows override
+    //authenticatorAttachment = 'cross-platform';
+    delete publicKey['authenticatorSelection'];
+  }
 
   navigator.credentials.create({ publicKey }).then(credential => {
     simulateServerSideValidateCredential(credential);

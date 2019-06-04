@@ -159,6 +159,10 @@ function webAuthnTest() {
   buy({ui: 'webauthn'});
 }
 
+function xPlatformWebAuthnTest() {
+  buy({ui: 'webauthn-x'});
+}
+
 function googleSigninTest() {
   buy({ui: 'gsignin'});
 }

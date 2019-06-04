@@ -95,6 +95,9 @@ self.addEventListener("paymentrequest", e => {
     case 'webauthn':
       uiURL = `${origin}/alphapay/webauthn/ui.html`;
       break;
+    case 'webauthn-x':
+      uiURL = `${origin}/alphapay/webauthn/ui.html?attach=cross-platform`;
+      break;
     case 'gsignin':
       uiURL = `${origin}/alphapay/gsignin/ui.html`;
       break;
